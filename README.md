@@ -1,6 +1,11 @@
-# Getting Started with Create React App
+# Deal Analyzer Web App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+- Should be able to input a deal and then this will automatically let you know how well the deal will do
+
+
+# React Instructions
 
 ## Available Scripts
 
