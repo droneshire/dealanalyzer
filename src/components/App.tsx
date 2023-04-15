@@ -8,6 +8,10 @@ import Logo from "./Logo";
 import Submit from "./Submit";
 
 const App: React.FC = () => {
+  const [isSubmitted, setisSubmitted] = React.useState(false);
+
+  console.log(isSubmitted);
+
   return (
     <div className="App">
       <span className="App-header"> Deal Analyzer </span>
