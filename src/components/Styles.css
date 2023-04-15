@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Assistant&family=Montserrat:ital,wght@1,300&family=Roboto:wght@300&display=swap');
+
+.Logo-logo {
+    width: 100%;
+    pointer-events: none;
+}
+
+.Input-text {
+    width: 100%;
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    padding: 0 10px;
+    font-size: 20px;
+    margin-bottom: 10px;
+    margin-top: 5mm;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+.Dropdown {
+    width: 50%;
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    padding: 0 10px;
+    font-size: 20px;
+    margin-bottom: 10px;
+    margin-top: 6mm;
+    align-items: center;
+    cursor: default;
+    display: inherit;
+    flex-wrap: wrap;
+    font-family: 'Roboto', sans-serif;
+  }
+
+.Button {
+    font-weight: "bold";
+    font-family: 'Roboto', sans-serif;
+}

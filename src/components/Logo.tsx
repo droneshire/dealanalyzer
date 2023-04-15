@@ -1,15 +1,7 @@
 import React from "react";
 
-import "./styles.css";
-import {
-  Box,
-  Typography,
-  FormGroup,
-  FormControlLabel,
-  Divider,
-  Checkbox,
-  TextField,
-} from "@mui/material";
+import "./Styles.css";
+import { Box } from "@mui/material";
 
 const Logo = () => {
   // create a box container component with the logo image
