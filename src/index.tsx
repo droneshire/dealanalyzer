@@ -24,10 +24,14 @@ const mdTheme = createTheme({
   },
   palette: {
     primary: {
-      main: "#ffffff", // Replace with your desired color
+      main: "#ffffff",
     },
     secondary: {
-      main: "#d2d3d4", // Replace with your desired color
+      main: "#d2d3d4",
+    },
+    text: {
+      primary: "#ffffff",
+      secondary: "#d2d3d4",
     },
   },
 });
