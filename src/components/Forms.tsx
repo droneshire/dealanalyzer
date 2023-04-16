@@ -1,6 +1,6 @@
-import React from "react";
+import { useState, useRef, useEffect, useCallback, ChangeEvent } from "react";
 
-import { Typography, FormGroup, FormControl, TextField } from "@mui/material";
+import { Typography, FormGroup, TextField } from "@mui/material";
 import { inputLabelClasses } from "@mui/material/InputLabel";
 
 interface TextInputProps {
@@ -8,23 +8,28 @@ interface TextInputProps {
   id: string;
   isValid: boolean;
   didSubmit: boolean;
-  handleInput: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleInput: (event: ChangeEvent<HTMLInputElement>) => void;
   title?: string;
   helperText?: string;
   defaultValue?: string | undefined;
 }
 
 const TextInput = (props: TextInputProps) => {
-  const [value, setValue] = React.useState<string>("");
+  const [value, setValue] = useState<string>("");
+  const [isDefault, setIsDefault] = useState<boolean>(true);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setIsDefault(false);
     setValue(event.target.value);
     props.handleInput(event);
   };
 
-  if (props.didSubmit) {
-    setValue("");
-  }
+  useEffect(() => {
+    if (props.didSubmit) {
+      setValue("");
+      setIsDefault(true);
+    }
+  }, [props.didSubmit]);
 
   const hasTitle = !!props?.title || false;
 
@@ -52,12 +57,11 @@ const TextInput = (props: TextInputProps) => {
         }}
         id={props.id}
         label={props.text}
-        defaultValue={props?.defaultValue || ""}
         variant="outlined"
         value={value}
         onChange={handleChange}
-        error={!props.isValid}
-        helperText={props?.helperText || ""}
+        error={!props.isValid && !isDefault}
+        helperText={!props.isValid && !isDefault ? props?.helperText || "" : ""}
       />
     </FormGroup>
   );
