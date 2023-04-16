@@ -3,13 +3,16 @@ import React from "react";
 import { Typography, FormGroup, TextField } from "@mui/material";
 import { inputLabelClasses } from "@mui/material/InputLabel";
 
-interface TextInputWithTitleProps {
-  title: string;
-  text: string;
-}
-
 interface TextInputProps {
   text: string;
+  id: string;
+  isValid: boolean;
+  helperText: string;
+  handleInput: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+interface TextInputWithTitleProps extends TextInputProps {
+  title: string;
 }
 
 const TextInputWithTitle = (props: TextInputWithTitleProps) => {
@@ -33,9 +36,12 @@ const TextInputWithTitle = (props: TextInputWithTitleProps) => {
             },
           },
         }}
-        id="outlined-basic"
+        id={props.id}
         label={props.text}
         variant="outlined"
+        onChange={props.handleInput}
+        error={!props.isValid}
+        helperText={props.helperText}
       />
     </FormGroup>
   );
@@ -54,9 +60,12 @@ const TextInput = (props: TextInputProps) => {
             },
           },
         }}
-        id="outlined-basic"
+        id={props.id}
         label={props.text}
         variant="outlined"
+        onChange={props.handleInput}
+        error={!props.isValid}
+        helperText={props.helperText}
       />
     </FormGroup>
   );

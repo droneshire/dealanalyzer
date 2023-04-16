@@ -3,12 +3,9 @@ import Button from "@mui/material/Button";
 import "./Styles.css";
 
 const Submit: React.FC<any> = (props: any) => {
-  const handleClick = () => {
-    console.log("Submit button clicked");
-  };
   return (
     <Button
-      onClick={handleClick}
+      onClick={props.handleClick}
       variant="text"
       color="secondary"
       style={{

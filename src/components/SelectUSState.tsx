@@ -3,7 +3,7 @@ import states from "./data/states.json";
 
 interface SelectUSStateProps {
   id: string;
-  onChange: (value: string) => void;
+  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   className: string;
 }
 
@@ -14,7 +14,7 @@ class SelectUSState extends React.Component<SelectUSStateProps> {
   }
 
   _handleChange(event: React.ChangeEvent<HTMLSelectElement>) {
-    this.props.onChange(event.target.value);
+    this.props.onChange(event);
   }
 
   render() {
