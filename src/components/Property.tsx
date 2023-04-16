@@ -1,5 +1,5 @@
 export interface Property {
-  id: number;
+  key: string;
   address: string;
   address2: string;
   city: string;
@@ -35,7 +35,7 @@ export interface Property {
 
 export function propertyFactory(props: any): Property {
   return {
-    id: props.id,
+    key: props.address,
     address: props?.address || "",
     address2: props?.address2 || "",
     city: props?.city || "",
