@@ -27,6 +27,13 @@ const mdTheme = createTheme({
         body: themeParam.palette.mode === "dark" ? darkScrollbar() : null,
       }),
     },
+    MuiFormHelperText: {
+      styleOverrides: {
+        root: {
+          color: "white",
+        },
+      },
+    },
   },
   palette: {
     mode: "dark",

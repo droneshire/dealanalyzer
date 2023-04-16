@@ -36,6 +36,7 @@ const InputDashboard = () => {
     if (formInputs) {
       const property: Property = propertyFactory(formInputs);
       setProperties([...properties, property]);
+      setformInputs({});
       console.log(property);
     }
     console.log("Button Submit");
@@ -50,7 +51,7 @@ const InputDashboard = () => {
         handleInput={handleChange}
         isValid={isValidEmail(formInputs?.email || "")}
         helperText={
-          isValidEmail(formInputs?.email || "")
+          !isValidEmail(formInputs?.email || "")
             ? "Please enter a valid email"
             : ""
         }
@@ -63,7 +64,7 @@ const InputDashboard = () => {
         handleInput={handleChange}
         isValid={isValidAddress(formInputs?.address || "")}
         helperText={
-          isValidAddress(formInputs?.address || "")
+          !isValidAddress(formInputs?.address || "")
             ? "Please enter a valid address"
             : ""
         }
@@ -72,15 +73,17 @@ const InputDashboard = () => {
         id="address2"
         text="Address 2"
         handleInput={handleChange}
-        isValid={true}
-        helperText="Additional address information"
+        isValid={!!formInputs?.address2}
+        helperText={
+          !!!formInputs?.address2 ? "Additional address information" : ""
+        }
       />
       <TextInput
         id="city"
         text="City"
         handleInput={handleChange}
-        isValid={true}
-        helperText="Enter the city name"
+        isValid={!!formInputs?.city}
+        helperText={!!!formInputs?.city ? "Please enter city" : ""}
       />
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         <div className="Dropdown">

@@ -7,8 +7,9 @@ interface TextInputProps {
   text: string;
   id: string;
   isValid: boolean;
-  helperText: string;
   handleInput: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  helperText?: string;
+  defaultValue?: string | undefined;
 }
 
 interface TextInputWithTitleProps extends TextInputProps {
@@ -38,10 +39,11 @@ const TextInputWithTitle = (props: TextInputWithTitleProps) => {
         }}
         id={props.id}
         label={props.text}
+        defaultValue={props?.defaultValue || ""}
         variant="outlined"
         onChange={props.handleInput}
         error={!props.isValid}
-        helperText={props.helperText}
+        helperText={props?.helperText || ""}
       />
     </FormGroup>
   );
@@ -62,10 +64,11 @@ const TextInput = (props: TextInputProps) => {
         }}
         id={props.id}
         label={props.text}
+        defaultValue={props?.defaultValue || ""}
         variant="outlined"
         onChange={props.handleInput}
         error={!props.isValid}
-        helperText={props.helperText}
+        helperText={props?.helperText || ""}
       />
     </FormGroup>
   );
