@@ -3,21 +3,15 @@ import React from "react";
 import "./App.css";
 
 import Copyright from "./Copyright";
-import InputFields from "./InputFields";
+import InputDashboard from "./InputDashboard";
 import Logo from "./Logo";
-import Submit from "./Submit";
 
 const App: React.FC = () => {
-  const [isSubmitted, setisSubmitted] = React.useState(false);
-
-  console.log(isSubmitted);
-
   return (
     <div className="App">
       <span className="App-header"> Deal Analyzer </span>
       <Logo />
-      <InputFields />
-      <Submit sx={{ mt: 5 }} />
+      <InputDashboard />
       <Copyright sx={{ mt: 5 }} />
     </div>
   );
