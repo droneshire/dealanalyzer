@@ -33,3 +33,15 @@
     flex-wrap: wrap;
     font-family: 'Roboto', sans-serif;
   }
+
+  .PropertyList {
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    width: 47.5%;
+    padding: 15px;
+    background-color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    color: #000000;
+  }

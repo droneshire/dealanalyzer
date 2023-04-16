@@ -3,9 +3,10 @@ import Button from "@mui/material/Button";
 import "./Styles.css";
 
 const Submit: React.FC<any> = (props: any) => {
+  const { handleSubmit, ...additionalProps } = props;
   return (
     <Button
-      onClick={props.handleClick}
+      onClick={handleSubmit}
       variant="text"
       color="secondary"
       style={{
@@ -15,7 +16,7 @@ const Submit: React.FC<any> = (props: any) => {
         fontSize: "1em",
         fontWeight: "bold",
       }}
-      {...props}
+      {...additionalProps}
     >
       Submit Deal
     </Button>
