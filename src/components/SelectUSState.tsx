@@ -23,7 +23,11 @@ class SelectUSState extends React.Component<SelectUSStateProps> {
         id={this.props.id}
         className={this.props.className}
         onChange={this._handleChange}
+        defaultValue={""}
       >
+        <option key="Default" value="">
+          Select a State
+        </option>
         {states.map((item) => (
           <option key={item.abbreviation} value={item.abbreviation}>
             {item.name}
