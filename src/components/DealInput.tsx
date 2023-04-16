@@ -33,7 +33,7 @@ const isFormValid = (inputs: FormInputs): boolean => {
   );
 };
 
-const InputDashboard = () => {
+const DealInput = () => {
   const [didSubmit, setDidSubmit] = React.useState<boolean>(false);
   const [updateError, setUpdateError] = React.useState<boolean>(false);
   const [formInputs, setformInputs] = React.useState<FormInputs>();
@@ -167,4 +167,4 @@ const InputDashboard = () => {
   );
 };
 
-export default InputDashboard;
+export default DealInput;
