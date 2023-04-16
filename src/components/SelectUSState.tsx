@@ -1,41 +1,34 @@
-import React from "react";
+import React, { FC } from "react";
+import MenuItem from "@mui/material/MenuItem";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+
 import states from "./data/states.json";
 
-interface SelectUSStateProps {
-  id: string;
-  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
-  className: string;
-}
+const SelectUSState: FC<any> = (props: any) => {
+  const { id, onChange, ...otherProps } = props;
 
-class SelectUSState extends React.Component<SelectUSStateProps> {
-  constructor(props: SelectUSStateProps) {
-    super(props);
-    this._handleChange = this._handleChange.bind(this);
-  }
+  const handleChange = (event: SelectChangeEvent) => {
+    onChange(event);
+  };
 
-  _handleChange(event: React.ChangeEvent<HTMLSelectElement>) {
-    this.props.onChange(event);
-  }
-
-  render() {
-    return (
-      <select
-        id={this.props.id}
-        className={this.props.className}
-        onChange={this._handleChange}
-        defaultValue={""}
-      >
-        <option key="Default" value="">
-          Select a State
-        </option>
-        {states.map((item) => (
-          <option key={item.abbreviation} value={item.abbreviation}>
-            {item.name}
-          </option>
-        ))}
-      </select>
-    );
-  }
-}
+  return (
+    <Select
+      id={id}
+      onChange={handleChange}
+      defaultValue="Select a State"
+      label="State"
+      {...otherProps}
+    >
+      <MenuItem key="Default" value="Select a State">
+        Select a State
+      </MenuItem>
+      {states.map((item) => (
+        <MenuItem key={item.abbreviation} value={item.abbreviation}>
+          {item.name}
+        </MenuItem>
+      ))}
+    </Select>
+  );
+};
 
 export default SelectUSState;

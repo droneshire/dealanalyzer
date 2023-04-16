@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import "./Styles.css";
 
-import { Box, CssBaseline, Divider } from "@mui/material";
+import {
+  Alert,
+  Box,
+  CssBaseline,
+  Divider,
+  SelectChangeEvent,
+  Snackbar,
+} from "@mui/material";
 import SelectUSState from "./SelectUSState";
 
 import { TextInput } from "./Forms";
@@ -17,8 +24,13 @@ interface FormInputs {
 
 const InputDashboard = () => {
   const [didSubmit, setDidSubmit] = React.useState<boolean>(false);
+  const [updateError, setUpdateError] = React.useState<boolean>(false);
   const [formInputs, setformInputs] = React.useState<FormInputs>();
   const [properties, setProperties] = React.useState<Property[]>([]);
+
+  const clearError = () => {
+    setUpdateError(false);
+  };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -26,23 +38,40 @@ const InputDashboard = () => {
     setformInputs({ ...formInputs, [name]: value });
   };
 
-  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleSelectChange = (event: SelectChangeEvent) => {
     const value = event.target.value;
-    const name = event.target.id;
+    const name = event.target.name;
     setformInputs({ ...formInputs, [name]: value });
   };
 
   const handleSubmit = (event: React.ChangeEvent<HTMLAnchorElement>) => {
-    if (!!formInputs?.address) {
+    if (
+      !!formInputs?.address &&
+      !!formInputs?.email &&
+      !!formInputs?.zip &&
+      !!formInputs?.state &&
+      !!formInputs?.city
+    ) {
       const property: Property = propertyFactory(formInputs);
       setProperties([...properties, property]);
       setformInputs({});
+      setDidSubmit(true);
       console.log(property);
+    } else {
+      setUpdateError(true);
+      console.log("Please fill out all fields");
     }
-    console.log("Button Submit");
+    console.log("Submit Deal");
   };
 
-  const addressInputFields = [
+  useEffect(() => {
+    console.log("didSubmit: ", didSubmit);
+    if (didSubmit) {
+      setDidSubmit(false);
+    }
+  }, [didSubmit]);
+
+  const addressInputTextProps = [
     {
       id: "email",
       text: "Email",
@@ -78,23 +107,24 @@ const InputDashboard = () => {
   return (
     <Box sx={{ width: "75%" }}>
       <CssBaseline />
-      {addressInputFields.map((inputField) => {
+      {addressInputTextProps.map((props) => {
         return (
-          <TextInput
-            {...inputField}
-            didSubmit={didSubmit}
-            handleInput={handleChange}
-          />
+          <Box sx={{ mt: 5 }}>
+            <TextInput
+              key={props.id}
+              didSubmit={didSubmit}
+              handleInput={handleChange}
+              {...props}
+            />
+          </Box>
         );
       })}
-      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-        <div className="Dropdown">
-          <SelectUSState
-            className="Dropdown"
-            onChange={handleSelectChange}
-            id="state"
-          />
-        </div>
+      <Box sx={{ mt: 5, display: "flex", justifyContent: "space-between" }}>
+        <SelectUSState
+          sx={{ width: "35%" }}
+          onChange={handleSelectChange}
+          id="state"
+        />
         <TextInput
           id="zipcode"
           text="Zip"
@@ -105,7 +135,26 @@ const InputDashboard = () => {
         />
       </Box>
       <Box sx={{ display: "flex", justifyContent: "center" }}>
-        <Submit sx={{ mt: 5 }} handleSubmit={handleSubmit} />
+        <Submit
+          sx={{ mt: 5 }}
+          styleProps={{
+            borderRadius: 5,
+            backgroundColor: "#ffffff",
+            padding: "3mm 3mm",
+            fontSize: "1em",
+            fontWeight: "bold",
+          }}
+          handleSubmit={handleSubmit}
+        />
+        <Snackbar
+          open={!!updateError}
+          autoHideDuration={5000}
+          onClose={clearError}
+        >
+          <Alert onClose={clearError} severity="error" sx={{ width: "100%" }}>
+            Please fill out all fields to submit deal
+          </Alert>
+        </Snackbar>
       </Box>
       <Divider sx={{ marginTop: 4, marginBottom: 4 }} />
       <PropertyList properties={properties} setProperties={setProperties} />
