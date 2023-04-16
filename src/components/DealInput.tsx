@@ -15,7 +15,7 @@ import SelectUSState from "./SelectUSState";
 import { TextInput } from "./Forms";
 import { isValidAddress, isValidEmail, isValidZip } from "../utils/validators";
 import Submit from "./Submit";
-import { propertyFactory, Property } from "./Property";
+import { propertyFactory, Property } from "../types/property";
 import PropertyList from "./PropertyList";
 
 interface FormInputs {
@@ -24,10 +24,18 @@ interface FormInputs {
 
 const isFormValid = (inputs: FormInputs): boolean => {
   if (!inputs) return false;
+  console.log(
+    inputs,
+    !!inputs?.address,
+    !!inputs?.email,
+    !!inputs?.zipcode,
+    !!inputs?.state,
+    !!inputs?.city
+  );
   return (
     !!inputs?.address &&
     !!inputs?.email &&
-    !!inputs?.zip &&
+    !!inputs?.zipcode &&
     !!inputs?.state &&
     !!inputs?.city
   );
@@ -129,6 +137,7 @@ const DealInput = () => {
           sx={{ width: "35%" }}
           onChange={handleSelectChange}
           id="state"
+          name="state"
         />
         <TextInput
           id="zipcode"

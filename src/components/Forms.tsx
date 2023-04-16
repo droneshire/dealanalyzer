@@ -25,7 +25,7 @@ const TextInput = (props: TextInputProps) => {
   };
 
   useEffect(() => {
-    if (props.didSubmit) {
+    if (props.didSubmit && !isDefault) {
       setValue("");
       setIsDefault(true);
     }
