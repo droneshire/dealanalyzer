@@ -15,7 +15,7 @@ import SelectUSState from "./SelectUSState";
 import { TextInput } from "./Forms";
 import { isValidAddress, isValidEmail, isValidZip } from "../utils/validators";
 import Submit from "./Submit";
-import { propertyFactory, Property } from "./Property";
+import { propertyFactory, Property } from "../types/property";
 import PropertyList from "./PropertyList";
 
 interface FormInputs {
@@ -24,17 +24,27 @@ interface FormInputs {
 
 const isFormValid = (inputs: FormInputs): boolean => {
   if (!inputs) return false;
+  console.log(
+    inputs,
+    !!inputs?.address,
+    !!inputs?.email,
+    !!inputs?.zipcode,
+    !!inputs?.state,
+    !!inputs?.city
+  );
   return (
     !!inputs?.address &&
     !!inputs?.email &&
-    !!inputs?.zip &&
+    !!inputs?.zipcode &&
     !!inputs?.state &&
     !!inputs?.city
   );
 };
 
 const DealInput = () => {
+  const numInputs = 5;
   const [didSubmit, setDidSubmit] = React.useState<boolean>(false);
+  const [formResets, setFormResets] = React.useState<number>(numInputs);
   const [updateError, setUpdateError] = React.useState<boolean>(false);
   const [formInputs, setformInputs] = React.useState<FormInputs>();
   const [properties, setProperties] = React.useState<Property[]>([]);
@@ -46,12 +56,14 @@ const DealInput = () => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     const name = event.target.id;
+    setFormResets(formResets - 1);
     setformInputs({ ...formInputs, [name]: value });
   };
 
   const handleSelectChange = (event: SelectChangeEvent) => {
     const value = event.target.value;
     const name = event.target.name;
+    setFormResets(formResets - 1);
     setformInputs({ ...formInputs, [name]: value });
   };
 
@@ -70,11 +82,11 @@ const DealInput = () => {
   };
 
   useEffect(() => {
-    console.log("didSubmit: ", didSubmit);
-    if (didSubmit) {
+    if (formResets === 0) {
       setDidSubmit(false);
+      setFormResets(numInputs);
     }
-  }, [didSubmit]);
+  }, [formResets]);
 
   const addressInputTextProps = [
     {
@@ -129,6 +141,7 @@ const DealInput = () => {
           sx={{ width: "35%" }}
           onChange={handleSelectChange}
           id="state"
+          name="state"
         />
         <TextInput
           id="zipcode"

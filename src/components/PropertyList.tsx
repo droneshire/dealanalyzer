@@ -1,7 +1,7 @@
 import React from "react";
 
 import "./Styles.css";
-import { Property } from "./Property";
+import { Property } from "../types/property";
 
 interface PropertyListProps {
   properties: Property[];
