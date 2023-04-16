@@ -22,6 +22,17 @@ interface FormInputs {
   [x: string]: string;
 }
 
+const isFormValid = (inputs: FormInputs): boolean => {
+  if (!inputs) return false;
+  return (
+    !!inputs?.address &&
+    !!inputs?.email &&
+    !!inputs?.zip &&
+    !!inputs?.state &&
+    !!inputs?.city
+  );
+};
+
 const InputDashboard = () => {
   const [didSubmit, setDidSubmit] = React.useState<boolean>(false);
   const [updateError, setUpdateError] = React.useState<boolean>(false);
@@ -45,13 +56,7 @@ const InputDashboard = () => {
   };
 
   const handleSubmit = (event: React.ChangeEvent<HTMLAnchorElement>) => {
-    if (
-      !!formInputs?.address &&
-      !!formInputs?.email &&
-      !!formInputs?.zip &&
-      !!formInputs?.state &&
-      !!formInputs?.city
-    ) {
+    if (isFormValid(formInputs || {})) {
       const property: Property = propertyFactory(formInputs);
       setProperties([...properties, property]);
       setformInputs({});
