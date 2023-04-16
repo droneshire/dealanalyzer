@@ -3,12 +3,7 @@ import { Typography, Link } from "@mui/material";
 
 const Copyright: FC<any> = (props: any) => {
   return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
+    <Typography variant="body2" color="text.primary" align="center" {...props}>
       {"Copyright © "}
       <Link
         color="inherit"

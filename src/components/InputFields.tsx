@@ -1,58 +1,38 @@
 import React from "react";
 
-import "./styles.css";
+import "./Styles.css";
 
-import {
-  Box,
-  Typography,
-  FormGroup,
-  FormControlLabel,
-  Divider,
-  Checkbox,
-  TextField,
-  Button,
-} from "@mui/material";
-import { inputLabelClasses } from "@mui/material/InputLabel";
+import { Box, CssBaseline, Divider } from "@mui/material";
 
-interface TextInputProps {
-  title: string;
-  text: string;
-}
+import { TextInput, TextInputWithTitle } from "./Forms";
+import SelectUSState from "./SelectUSState";
 
-const TextInput = (props: TextInputProps) => {
+const StateZip = () => {
   return (
-    <FormGroup>
-      <Typography variant="h6" gutterBottom className="Input-text">
-        {props.text}
-      </Typography>
-      <TextField
-        sx={{ input: { color: "white" } }}
-        InputLabelProps={{
-          sx: {
-            color: "white",
-            [`&.${inputLabelClasses.shrink}`]: {
-              color: "grey",
-            },
-          },
-        }}
-        id="outlined-basic"
-        label={props.title}
-        variant="outlined"
-      />
-    </FormGroup>
+    <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+      <CssBaseline />
+      <div className="Dropdown">
+        <SelectUSState
+          className="Dropdown"
+          onChange={(state) => console.log("New state: %s", state)}
+          id="state"
+        />
+      </div>
+      <TextInput text="Zip" />
+    </Box>
   );
 };
 
 const InputFields = () => {
   return (
     <Box sx={{ width: "75%" }}>
-      <>
-        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-          <TextInput title="Email" text="Email" />
-          <Divider sx={{ marginTop: 2, marginBottom: 4 }} />
-          <TextInput title="Address" text="Address" />
-        </Box>
-      </>
+      <CssBaseline />
+      <TextInput text="Email" />
+      <Divider sx={{ marginTop: 2, marginBottom: 4 }} />
+      <TextInputWithTitle title="Property Details" text="Address" />
+      <TextInput text="Address 2" />
+      <TextInput text="City" />
+      <StateZip />
     </Box>
   );
 };
