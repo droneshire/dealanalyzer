@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { darkScrollbar } from "@mui/material";
 
 import "./index.css";
 import App from "./components/App";
@@ -21,17 +22,30 @@ const mdTheme = createTheme({
         component: LinkBehavior,
       } as any,
     },
+    MuiCssBaseline: {
+      styleOverrides: (themeParam) => ({
+        body: themeParam.palette.mode === "dark" ? darkScrollbar() : null,
+      }),
+    },
+    MuiFormHelperText: {
+      styleOverrides: {
+        root: {
+          color: "white",
+        },
+      },
+    },
   },
   palette: {
+    mode: "dark",
     primary: {
       main: "#ffffff",
     },
     secondary: {
-      main: "#d2d3d4",
+      main: "#000000",
     },
     text: {
       primary: "#ffffff",
-      secondary: "#d2d3d4",
+      secondary: "#000000",
     },
   },
 });
