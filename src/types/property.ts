@@ -33,9 +33,16 @@ export interface Property {
   annualReturnOnInvestment: number;
 }
 
-export function propertyFactory(props: any): Property {
+export function updateProperty(property: Property, props: Partial<Property>): Property {
   return {
-    key: props.address,
+    ...property,
+    ...props,
+  };
+}
+
+export function propertyFactory(props?: Partial<Property>): Property {
+  return {
+    key: props?.address || Date.now().toString(),
     address: props?.address || "",
     address2: props?.address2 || "",
     city: props?.city || "",

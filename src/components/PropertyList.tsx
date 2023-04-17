@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 
 import "./Styles.css";
 import { Property } from "../types/property";
@@ -8,7 +8,7 @@ interface PropertyListProps {
   setProperties: React.Dispatch<React.SetStateAction<Property[]>>;
 }
 
-const PropertyList = (props: PropertyListProps) => {
+const PropertyList: FC<PropertyListProps> = (props: PropertyListProps) => {
   return (
     <div className="PropertyList">
       {props.properties.map((property: Property) => (
