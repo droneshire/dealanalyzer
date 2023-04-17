@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { FC, useEffect } from "react";
 
 import "./Styles.css";
 
@@ -41,7 +41,7 @@ const isFormValid = (inputs: FormInputs): boolean => {
   );
 };
 
-const DealInput = () => {
+const DealInput: FC = () => {
   const [didSubmit, setDidSubmit] = React.useState<boolean>(false);
   const [updateError, setUpdateError] = React.useState<boolean>(false);
   const [formInputs, setformInputs] = React.useState<FormInputs>();

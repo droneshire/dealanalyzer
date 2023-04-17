@@ -3,10 +3,10 @@ import React from "react";
 import "./Styles.css";
 import { Box } from "@mui/material";
 
-const Logo = () => {
+const Logo = (props: any) => {
   // create a box container component with the logo image
   return (
-    <Box sx={{ width: "25%" }}>
+    <Box alignItems="center" justifyContent="center" {...props}>
       <img
         className="Logo-logo"
         src="ecf_logo.png"
