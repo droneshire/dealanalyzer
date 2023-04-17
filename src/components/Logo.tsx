@@ -7,11 +7,13 @@ const Logo = (props: any) => {
   // create a box container component with the logo image
   return (
     <Box alignItems="center" justifyContent="center" {...props}>
-      <img
-        className="Logo-logo"
-        src="ecf_logo.png"
-        alt="Engineered Cash Flow LLC"
-      />
+      <a href="https://engineeredcashflow.com/">
+        <img
+          className="Logo-logo"
+          src="ecf_logo.png"
+          alt="Engineered Cash Flow LLC"
+        />
+      </a>
     </Box>
   );
 };
