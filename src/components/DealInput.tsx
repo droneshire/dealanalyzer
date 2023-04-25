@@ -42,7 +42,7 @@ const isFormValid = (inputs: FormInputs): boolean => {
 };
 
 const DealInput: FC = () => {
-  const [didSubmit, setDidSubmit] = React.useState<boolean>(false);
+  const [submit, setSubmit] = React.useState<number>(0);
   const [updateError, setUpdateError] = React.useState<boolean>(false);
   const [formInputs, setformInputs] = React.useState<FormInputs>();
   const [properties, setProperties] = React.useState<Property[]>([]);
@@ -68,7 +68,7 @@ const DealInput: FC = () => {
       const property: Property = propertyFactory(formInputs);
       setProperties([...properties, property]);
       setformInputs({});
-      setDidSubmit(true);
+      setSubmit(submit + 1);
       console.log(property);
     } else {
       setUpdateError(true);
@@ -76,13 +76,6 @@ const DealInput: FC = () => {
     }
     console.log("Submit Deal");
   };
-
-  useEffect(() => {
-    console.log("didSubmit: ", didSubmit);
-    if (didSubmit) {
-      setDidSubmit(false);
-    }
-  }, [didSubmit]);
 
   const addressInputTextProps = [
     {
@@ -125,7 +118,7 @@ const DealInput: FC = () => {
           <Box sx={{ mt: 5 }}>
             <TextInput
               key={props.id}
-              didSubmit={didSubmit}
+              submit={submit}
               handleInput={handleChange}
               {...props}
             />
@@ -142,7 +135,7 @@ const DealInput: FC = () => {
         <TextInput
           id="zipcode"
           text="Zip"
-          didSubmit={didSubmit}
+          submit={submit}
           handleInput={handleChange}
           isValid={isValidZip(formInputs?.zipcode || "")}
           helperText="Enter a valid zip code"

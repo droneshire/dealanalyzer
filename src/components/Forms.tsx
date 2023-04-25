@@ -7,7 +7,7 @@ interface TextInputProps {
   text: string;
   id: string;
   isValid: boolean;
-  didSubmit: boolean;
+  submit: number;
   handleInput: (event: ChangeEvent<HTMLInputElement>) => void;
   title?: string;
   helperText?: string;
@@ -25,11 +25,11 @@ const TextInput = (props: TextInputProps) => {
   };
 
   useEffect(() => {
-    if (props.didSubmit && !isDefault) {
+    if (props.submit !== 0 && !isDefault) {
       setValue("");
       setIsDefault(true);
     }
-  }, [props.didSubmit]);
+  }, [props.submit]);
 
   const hasTitle = !!props?.title || false;
 

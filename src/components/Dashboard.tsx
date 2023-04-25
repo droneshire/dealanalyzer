@@ -33,11 +33,11 @@ export default function ResponsiveDrawer() {
       </Toolbar>
       <Divider />
       <List>
-        {dashboardViewList.map(({ key, label, icon: C }) => (
+        {dashboardViewList.map(({ key, label, icon: Icon }) => (
           <ListItem key={key} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                <C />
+                <Icon />
               </ListItemIcon>
               <ListItemText primary={label} />
             </ListItemButton>
@@ -68,7 +68,7 @@ export default function ResponsiveDrawer() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
+          <Typography variant="h4" noWrap component="div">
             Deal Analyzer
           </Typography>
         </Toolbar>
